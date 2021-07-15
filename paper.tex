@@ -1,0 +1,227 @@
+\documentclass[12pt, letterpaper, onside]{article}
+\usepackage[affil-it]{authblk} % author institution
+\usepackage{amsmath} % math
+\usepackage{amssymb} % math symbol
+\usepackage{amsthm} % math theorem
+\usepackage{libertine} % acm font libertine
+
+\newcommand
+{\twoFunc}
+[1]
+{#1\left(x, y\right)}
+
+\newcommand
+{\point}
+[1]
+{\left(#1\right)}
+
+\newcommand
+{\fpd} % [f]irst [p]artial [d]erivative
+[3]
+{\frac{\partial{#1}}{\partial{#2}}\point{#3}}
+
+\newcommand
+{\spd} % [s]econd [p]artial [d]erivative
+[4]
+{\frac{\partial}{\partial{#3}} \left(\frac{\partial{#1}}{\partial{#2}}\right) \point{#4}}
+
+\newcommand
+{\appCon} % h and k approach condition
+[2]
+{\text{if } h \to 0^{#1} \text{, } k \to 0^{#2}}
+
+\newtheorem{definition}{Definition}[section]
+
+\title{\textbf{Ridge Problem in Stochastic Gradient Descent: An Analytical Solution}}
+\author{Tran Phong Binh\thanks{Email: \texttt{phongbinh2511@gmail.com}}}
+\affil{Department of Computer Science, National Tsing Hua University}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Write something here mate. % TODO
+\end{abstract}
+
+\section{Introduction}
+
+\section{Proof}
+\begin{equation}
+    \twoFunc{f} = 
+    \begin{cases}
+        \twoFunc{\phi} & \text{if }x = 2y\text{,}\\
+        \twoFunc{\psi} & \text{otherwise}\text{,}
+    \end{cases}
+\end{equation}
+where
+\begin{align}
+    \twoFunc{\phi} &= x^{2} + y^{2} - 8x - 4y + 10\text{,}\\
+    \twoFunc{\psi} &= x^{2} + y^{2} - 4x - 2y\text{.}
+\end{align}
+
+\subsection{First Partial Derivatives}
+We examine the first derivatives of our function $f$ at point $\point{2, 1}$.
+\begin{equation}
+    \fpd{f}{x}{2, 1} = \lim_{h \to 0}{\frac{f\point{2 + h, 1} - f\point{2, 1}}{h}}
+\end{equation}
+Because the numerator
+\begin{equation}
+    f\point{2 + h, 1} = \psi\point{2 + h, 1}
+\end{equation}
+\begin{equation}
+    \begin{split}
+        f\point{2, 1} & = \phi\point{2, 1}\\
+                      & = -5\\
+                      & = \psi\point{2, 1}
+    \end{split}
+\end{equation}
+it holds that
+\begin{equation}
+    \label{eq:proveSpd} % [prove] [s]econd [p]artial [d]erivatives
+    \begin{split}
+        \fpd{f}{x}{2, 1} & = \fpd{\psi}{x}{2, 1}\\
+                         & = 2x - 4\\
+                         & = 0
+    \end{split}
+\end{equation}
+Similarly,
+\begin{equation}
+    \begin{split}
+        \fpd{f}{y}{2, 1} & = \fpd{\psi}{y}{2, 1}\\
+                         & = 2y - 2\\
+                         & = 0
+    \end{split}
+\end{equation}
+Hence
+\begin{equation}
+    \label{zeroGradient}
+    \nabla_{f}\point{2, 1} =
+    \begin{bmatrix}
+        0\\
+        0
+    \end{bmatrix}
+\end{equation}
+
+\subsection{Second Partial Derivatives}
+We then consider the second partial derivatives of our function at the same point.
+
+\subsubsection{Second Partial Derivative With Respect To $x$}
+We begin with $f_{xx}\point{2, 1}$:
+\begin{equation}
+    \spd{f}{x}{x}{2, 1} = \lim_{h \to 0}{\frac{\fpd{f}{x}{2 + h, 1} - \fpd{f}{x}{2, 1}}{h}}
+\end{equation}
+Assessing the first component of the numerator
+\begin{equation}
+    \fpd{f}{x}{2 + h, 1} = \lim_{k \to 0}{\frac{f\point{2 + h + k, 1} - f\point{2 + h, 1}}{k}}
+\end{equation}
+We observe that
+\begin{align}
+    f\point{2 + h + k, 1} & =
+    \begin{cases}
+        \psi\point{2 + h + k, 1} & \appCon{-}{-}\\
+        \phi\point{2, 1} = -5 = \psi\point{2, 1} & \appCon{-}{+}\\
+        \phi\point{2, 1} = -5 = \psi\point{2, 1} & \appCon{+}{-}\\
+        \psi\point{2 + h + k, 1} & \appCon{+}{+}
+    \end{cases}\\
+    & = \psi\point{2 + h + k, 1}
+\end{align}
+and
+\begin{equation}
+    f\point{2 + h, 1} = \psi\point{2 + h, 1}
+\end{equation}
+Hence
+\begin{equation}
+    \label{eq:proveFxx}
+    \fpd{f}{x}{2 + h, 1} = \fpd{\psi}{x}{2 + h, 1}
+\end{equation}
+By equations \ref{eq:proveSpd} and \ref{eq:proveFxx},
+\begin{align}
+    \spd{f}{x}{x}{2, 1} & = \spd{\psi}{x}{x}{2, 1}\\
+                        & = 2
+\end{align}
+
+\subsubsection{Second Partial Derivative With Respect To $x$ Then $y$}
+We continue by examining $f_{yx}\point{2, 1}$:
+\begin{equation}
+    \spd{f}{x}{y}{2, 1} = \lim_{h \to 0}{\frac{\fpd{f}{x}{2, 1 + h} - \fpd{f}{x}{2, 1}}{h}}
+\end{equation}
+Again, we assess the first component of the numerator
+\begin{equation}
+    \fpd{f}{x}{2, 1 + h} = \lim_{k \to 0}{\frac{f\point{2 + k, 1 + h} - f\point{2, 1 + h}}{k}}
+\end{equation}
+Similar to $f_{xx}\point{2, 1}$, we observe that
+\begin{align}
+    f\point{2 + k, 1 + h} & =
+    \begin{cases}
+        \psi\point{2 + k, 1 + h} & \appCon{-}{-}\\
+        \psi\point{2 + k, 1 + h} & \appCon{-}{+}\\
+        \psi\point{2 + k, 1 + h} & \appCon{+}{-}\\
+        \psi\point{2 + k, 1 + h} & \appCon{+}{+}
+    \end{cases}\\
+    & = \psi\point{2 + k, 1 + h}
+\end{align}
+and
+\begin{equation}
+    \label{eq:proveFyx}
+    f\point{2, 1 + h} = \psi\point{2, 1 + h}
+\end{equation}
+Hence
+\begin{equation}
+    \fpd{f}{x}{2, 1 + h} = \fpd{\psi}{x}{2, 1 + h}
+\end{equation}
+By equations \ref{eq:proveSpd} and \ref{eq:proveFyx},
+\begin{align}
+    \spd{f}{x}{y}{2, 1} & = \spd{\psi}{x}{y}{2, 1}\\
+                        & = 0
+\end{align}
+
+\subsubsection{Hessian Determinant}
+Performing similar deductions for $f_{xy}\point{2, 1}$ and $f_{yy}\point{2, 1}$, we have
+\begin{align}
+    f_{xx}\point{2, 1} & = 2\\
+    f_{yx}\point{2, 1} & = 0\\
+    f_{xy}\point{2, 1} & = 0\\
+    f_{yy}\point{2, 1} & = 2
+\end{align}
+Hence the Hessian determinant
+\begin{align}
+    H & = f_{xx}\point{2, 1}f_{yy}\point{2, 1} - f_{yx}\point{2, 1}f_{xy}\point{2, 1}\\
+    \label{positiveDetH}
+      & = 4 > 0
+\end{align}
+
+\subsection{Second Partial Derivative Test Contradiction}
+According to \cite{TODO that mit thing}, by equations \ref{zeroGradient}, \ref{positiveDetH}, and the fact that $f_{xx}\point{2, 1} = 2 > 0$, we shall conclude $(2, 1)$ is a local minimum point. However, this is incorrect, as for $h \in \mathbb{R}$, $h \to 0^{+}$:
+\begin{align}
+    f\point{2 + 2h, 1 + h} & = \phi\point{2 + 2h, 1 + h}\\
+                           & < \phi\point{2, 1} = f\point{2, 1}
+\end{align}
+That is, $\point{2, 1}$ is not a local minimum point (proof in appendix). % TODO appendix
+
+\section{Intuition}
+
+\section{Solution}
+For the tangent hyperplane of a multivariable function to be `flat', it is not enough for the gradient of the function at that point to be the zero vector, but the first derivatives of the function in all directions at the point of interest must equal to $0$.
+
+In this work, we provide an analytical solution to this issue by redefining what it takes for the tangent hyperplane of a function at a point to be `flat':
+\begin{definition}
+    Given a multivariable function
+    \begin{align*}
+        f \colon \mathbb{R^N} & \longrightarrow \mathbb{R}\\
+                   \mathbf{x} & \longmapsto f\left(\mathbf{x}\right)
+    \end{align*}
+    where $\mathbf{x} = (x_1, x_2, \dots, x_N)$. The tangent hyperplane of the function is flat at point $\mathbf{x_0}$ iff for all directions $\mathbf{v} \in \mathbb{R^N}$, the single variable function
+    \begin{align*}
+                g \colon \mathbb{R} & \longrightarrow \mathbb{R}\\
+                                  k & \longmapsto f\left(\mathbf{x_0} + k\mathbf{v}\right)
+    \end{align*}
+has zero derivative at $k = 0$ i.e.\ iff $\forall \mathbf{v} \in \mathbb{R^N} \colon \frac{\mathrm{d}g}{\mathrm{d}k}\left(0\right) = 0$.
+\end{definition}
+
+\section{Conclusion}
+
+\section{Future Work}
+
+\end{document}
