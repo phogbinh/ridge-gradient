@@ -187,7 +187,7 @@ Performing similar deductions for $f_{xy}\point{2, 1}$ and $f_{yy}\point{2, 1}$,
 \end{align}
 Hence the Hessian determinant
 \begin{align}
-    H_f & = f_{xx}\point{2, 1}f_{yy}\point{2, 1} - f_{yx}\point{2, 1}f_{xy}\point{2, 1}\\
+    H_{f} & = f_{xx}\point{2, 1}f_{yy}\point{2, 1} - f_{yx}\point{2, 1}f_{xy}\point{2, 1}\\
     \label{positiveDetH}
       & = 4 > 0
 \end{align}
@@ -212,10 +212,10 @@ In this work, we provide an analytical solution to this issue by redefining what
         f \colon \mathbb{R^{N}} & \longrightarrow \mathbb{R}\\
                    \mathbf{x} & \longmapsto f\left(\mathbf{x}\right)
     \end{align*}
-    where $\mathbf{x} = (x_1, x_2, \dots, x_n)$. The tangent hyperplane of the function is flat at point $\mathbf{x_0}$ iff for all directions $\mathbf{v} \in \mathbb{R^{N}}$, the single variable function
+    where $\mathbf{x} = (x_{1}, x_{2}, \dots, x_{n})$. The tangent hyperplane of the function is flat at point $\mathbf{x_{0}}$ iff for all directions $\mathbf{v} \in \mathbb{R^{N}}$, the single variable function
     \begin{align*}
                 g \colon \mathbb{R} & \longrightarrow \mathbb{R}\\
-                                  k & \longmapsto f\left(\mathbf{x_0} + k\mathbf{v}\right)
+                                  k & \longmapsto f\left(\mathbf{x_{0}} + k\mathbf{v}\right)
     \end{align*}
 has zero derivative at $k = 0$ i.e.\ iff $\forall \mathbf{v} \in \mathbb{R^{N}} \colon \frac{\mathrm{d}g}{\mathrm{d}k}\left(0\right) = 0$.
 \end{definition}
