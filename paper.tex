@@ -42,7 +42,7 @@
 \maketitle
 
 \begin{abstract}
-Write something here mate. % TODO
+% TODO
 \end{abstract}
 
 \section{Introduction}
@@ -164,11 +164,11 @@ Similar to $f_{xx}\point{2, 1}$, we observe that
 \end{align}
 and
 \begin{equation}
-    \label{eq:proveFyx}
     f\point{2, 1 + h} = \psi\point{2, 1 + h}
 \end{equation}
 Hence
 \begin{equation}
+    \label{eq:proveFyx}
     \fpd{f}{x}{2, 1 + h} = \fpd{\psi}{x}{2, 1 + h}
 \end{equation}
 By equations \ref{eq:proveSpd} and \ref{eq:proveFyx},
@@ -187,7 +187,7 @@ Performing similar deductions for $f_{xy}\point{2, 1}$ and $f_{yy}\point{2, 1}$,
 \end{align}
 Hence the Hessian determinant
 \begin{align}
-    H & = f_{xx}\point{2, 1}f_{yy}\point{2, 1} - f_{yx}\point{2, 1}f_{xy}\point{2, 1}\\
+    H_f & = f_{xx}\point{2, 1}f_{yy}\point{2, 1} - f_{yx}\point{2, 1}f_{xy}\point{2, 1}\\
     \label{positiveDetH}
       & = 4 > 0
 \end{align}
@@ -212,7 +212,7 @@ In this work, we provide an analytical solution to this issue by redefining what
         f \colon \mathbb{R^N} & \longrightarrow \mathbb{R}\\
                    \mathbf{x} & \longmapsto f\left(\mathbf{x}\right)
     \end{align*}
-    where $\mathbf{x} = (x_1, x_2, \dots, x_N)$. The tangent hyperplane of the function is flat at point $\mathbf{x_0}$ iff for all directions $\mathbf{v} \in \mathbb{R^N}$, the single variable function
+    where $\mathbf{x} = (x_1, x_2, \dots, x_n)$. The tangent hyperplane of the function is flat at point $\mathbf{x_0}$ iff for all directions $\mathbf{v} \in \mathbb{R^N}$, the single variable function
     \begin{align*}
                 g \colon \mathbb{R} & \longrightarrow \mathbb{R}\\
                                   k & \longmapsto f\left(\mathbf{x_0} + k\mathbf{v}\right)
