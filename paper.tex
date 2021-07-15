@@ -4,6 +4,11 @@
 \usepackage{amssymb} % math symbol
 \usepackage{amsthm} % math theorem
 \usepackage{libertine} % acm font libertine
+\usepackage[backend=biber]{biblatex}
+
+\addbibresource{reference.bib}
+
+\newtheorem{definition}{Definition}[section]
 
 \newcommand
 {\twoFunc}
@@ -29,8 +34,6 @@
 {\appCon} % h and k approach condition
 [2]
 {\text{if } h \to 0^{#1} \text{, } k \to 0^{#2}}
-
-\newtheorem{definition}{Definition}[section]
 
 \title{\textbf{Ridge Problem in Stochastic Gradient Descent: An Analytical Solution}}
 \author{Tran Phong Binh\thanks{Email: \texttt{phongbinh2511@gmail.com}}}
@@ -193,7 +196,7 @@ Hence the Hessian determinant
 \end{align}
 
 \subsection{Second Partial Derivative Test Contradiction}
-According to \cite{TODO that mit thing}, by equations \ref{zeroGradient}, \ref{positiveDetH}, and the fact that $f_{xx}\point{2, 1} = 2 > 0$, we shall conclude $(2, 1)$ is a local minimum point. However, this is incorrect, as for $h \in \mathbb{R}$, $h \to 0^{+}$:
+According to \cite{secondDerivativeTest}, by equations \ref{zeroGradient}, \ref{positiveDetH}, and the fact that $f_{xx}\point{2, 1} = 2 > 0$, we shall conclude $(2, 1)$ is a local minimum point. However, this is incorrect, as for $h \in \mathbb{R}$, $h \to 0^{+}$:
 \begin{align}
     f\point{2 + 2h, 1 + h} & = \phi\point{2 + 2h, 1 + h}\\
                            & < \phi\point{2, 1} = f\point{2, 1}
@@ -223,5 +226,7 @@ has zero derivative at $k = 0$ i.e.\ iff $\forall \mathbf{v} \in \mathbb{R^{N}} 
 \section{Conclusion}
 
 \section{Future Work}
+
+\printbibliography
 
 \end{document}
