@@ -215,7 +215,7 @@ That is, $\point{2, 1}$ is not a local minimum point (proof in appendix). % TODO
 \section{Solution}
 For the tangent hyperplane of a multivariable function to be flat, it is not enough for the gradient of the function at that point to be the zero vector, but the first derivatives of the function in all directions at the point of interest must equal to $0$.
 
-In this work, we provide an analytical solution to this issue by redefining what it takes for the tangent hyperplane of a function at a point to be flat. Firstly, we define the concept of directional function\footnote{In all discussions of directional function, we exclude the vector $\vec{0}$.}:
+In this work, we provide an analytical solution to this issue by redefining what it takes for the tangent hyperplane of a function at a point to be flat. Firstly, we define the concept of directional function\footnote{We exclude the vector $\vec{0}$ in all of our discussions on directional function.}:
 \begin{definition}
     Given a multivariable function
     \begin{align*}
@@ -230,15 +230,16 @@ In this work, we provide an analytical solution to this issue by redefining what
 \end{definition}
 With this, we are ready to redefine flat tangent hyperplane:
 \begin{definition}
-    Given a multivariable function $f$, its tangent hyperplane is flat at point $\vec{x_{0}}$ iff for all directions $\vec{v} \in \mathbb{R^{N}}$, the directional function $\xi_\vec{v}$ at that point has zero derivative at $k = 0$ i.e.\ iff $\forall \vec{v} \in \mathbb{R^{N}} \colon \frac{\mathrm{d}\xi_\vec{v}}{\mathrm{d}k}\left(0\right) = 0$.
+    Given a multivariable function $f$, its tangent hyperplane is flat at point $\vec{x_{0}}$ iff for all directions $\vec{v} \in \mathbb{R^{N}}$, the directional function $\xi_\vec{v}$ at that point has zero first derivative at $k = 0$ i.e.\ iff $\forall \vec{v} \in \mathbb{R^{N}} \colon \frac{\mathrm{d}\xi_\vec{v}}{\mathrm{d}k}\left(0\right) = 0$.
 \end{definition}
 From this definition, we can derive our new local mininimum test:
 \begin{theorem}
+    \label{th:localMin}
     Given a multivariable function $f$, if its tangent hyperplane is flat at point $\vec{x_{0}}$, and for all directions $\vec{v} \in \mathbb{R^{N}}$, the directional function $\xi_\vec{v}$ at that point has positive second derivative at $k = 0$ i.e.\ if $\forall \vec{v} \in \mathbb{R^{N}} \colon \frac{\mathrm{d}\xi_\vec{v}}{\mathrm{d}k}\left(0\right) = 0 \land \frac{\mathrm{d^2}\xi_\vec{v}}{\mathrm{d}k^2}\left(0\right) > 0$, then $\vec{x_{0}}$ is a local minimum point.
 \end{theorem}
 
 \subsection{False Local Minimum}
-We revisit our very first function to see if this test works:
+We revisit our first example to see if the test works:
 \counterFunc
 For $\vec{v} = \point{4, 2}$, our directional function at $\vec{x_{0}} = \point{2, 1}$ is
 \begin{align}
@@ -268,14 +269,34 @@ Since $x = 2y$,
     & = 4 + 16k + 16k^{2} + 1 + 4k + 4k^{2} - 16 - 32k - 4 - 8k + 10\\
     & = 20k^{2} - 20k - 5
 \end{align}
-We examine the directional function's derivative at $k = 0$:
+We examine the directional function's first derivative at $k = 0$:
 \begin{align}
     \frac{\mathrm{d}\xi_\vec{v}}{\mathrm{d}k}\point{0} & = 40k - 20\\
     & = -20 \neq 0
 \end{align}
-Hence $(2, 1)$ is not a local minimum point!
+Hence $\vec{x_{0}} = (2, 1)$ is not a local minimum point!
 
 \subsection{True Local Minimum}
+We consolidate our test with the well-known function
+\begin{equation}
+    f\point{\vec{x}} = \vec{x}^{\intercal}\mathrm{A}\vec{x}
+\end{equation}
+where $\underset{n \times n}{\mathrm{A}} \succ 0$. For any $\vec{v} \in \mathbb{R^{N}}$, our directional function at $\vec{x_{0}} = \vec{0}$ is
+\begin{align}
+    \xi_\vec{v}\point{k} & = f\point{\vec{x_{0}} + k\vec{v}}\\
+    & = \left(k\vec{v}\right)^{\intercal}\mathrm{A}\left(k\vec{v}\right)\\
+    & = k^{2}\vec{v}^{\intercal}\mathrm{A}\vec{v}
+\end{align}
+We examine the directional function's first derivative at $k = 0$:
+\begin{align}
+    \frac{\mathrm{d}\xi_\vec{v}}{\mathrm{d}k}\point{0} & = 2k\vec{v}^{\intercal}\mathrm{A}\vec{v}\\
+    & = 0
+\end{align}
+Furthermore,
+\begin{equation}
+    \frac{\mathrm{d^{2}}\xi_\vec{v}}{\mathrm{d}k^{2}}\point{0} = 2\vec{v}^{\intercal}\mathrm{A}\vec{v}
+\end{equation}
+Since $A \succ 0$, $\forall \vec{v} \neq \vec{0} \colon \vec{v}^{\intercal}\mathrm{A}\vec{v} > 0$. Thus, our directional function's second derivative is positive. According to Theorem \ref{th:localMin}, $\vec{x_{0}} = \vec{0}$ is a local minimum point!
 
 \section{Conclusion}
 
