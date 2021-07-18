@@ -7,6 +7,7 @@
 \addbibresource{reference.bib}
 
 \newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
 
 \newcommand
 {\twoFunc}
@@ -33,6 +34,25 @@
 [2]
 {\text{if } h \to 0^{#1} \text{, } k \to 0^{#2}}
 
+\newcommand
+{\counterFunc}
+{
+\begin{equation*}
+    \twoFunc{f} = 
+    \begin{cases}
+        \twoFunc{\phi} & \text{if }x = 2y\text{,}\\
+        \twoFunc{\psi} & \text{otherwise}\text{,}
+    \end{cases}
+\end{equation*}
+where
+\begin{align*}
+    \twoFunc{\phi} &= x^{2} + y^{2} - 8x - 4y + 10\text{,}\\
+    \twoFunc{\psi} &= x^{2} + y^{2} - 4x - 2y\text{.}
+\end{align*}
+}
+
+\renewcommand{\vec}{\mathbf}
+
 \title{\textbf{Ridge Problem in Stochastic Gradient Descent: An Analytical Solution}}
 \author{Tran Phong Binh\thanks{Email: \texttt{phongbinh2511@gmail.com}}}
 \affil{Department of Computer Science, National Tsing Hua University}
@@ -49,18 +69,7 @@
 \section{Introduction}
 
 \section{Proof}
-\begin{equation}
-    \twoFunc{f} = 
-    \begin{cases}
-        \twoFunc{\phi} & \text{if }x = 2y\text{,}\\
-        \twoFunc{\psi} & \text{otherwise}\text{,}
-    \end{cases}
-\end{equation}
-where
-\begin{align}
-    \twoFunc{\phi} &= x^{2} + y^{2} - 8x - 4y + 10\text{,}\\
-    \twoFunc{\psi} &= x^{2} + y^{2} - 4x - 2y\text{.}
-\end{align}
+\counterFunc
 
 \subsection{First Partial Derivatives}
 We examine the first derivatives of our function $f$ at point $\point{2, 1}$.
@@ -204,22 +213,69 @@ That is, $\point{2, 1}$ is not a local minimum point (proof in appendix). % TODO
 \section{Intuition}
 
 \section{Solution}
-For the tangent hyperplane of a multivariable function to be `flat', it is not enough for the gradient of the function at that point to be the zero vector, but the first derivatives of the function in all directions at the point of interest must equal to $0$.
+For the tangent hyperplane of a multivariable function to be flat, it is not enough for the gradient of the function at that point to be the zero vector, but the first derivatives of the function in all directions at the point of interest must equal to $0$.
 
-In this work, we provide an analytical solution to this issue by redefining what it takes for the tangent hyperplane of a function at a point to be `flat':
+In this work, we provide an analytical solution to this issue by redefining what it takes for the tangent hyperplane of a function at a point to be flat. Firstly, we define the concept of directional function\footnote{In all discussions of directional function, we exclude the vector $\vec{0}$.}:
 \begin{definition}
     Given a multivariable function
     \begin{align*}
         f \colon \mathbb{R^{N}} & \longrightarrow \mathbb{R}\\
-                   \mathbf{x} & \longmapsto f\left(\mathbf{x}\right)
+                        \vec{x} & \longmapsto f\left(\vec{x}\right)
     \end{align*}
-    where $\mathbf{x} = (x_{1}, x_{2}, \dots, x_{n})$. The tangent hyperplane of the function is flat at point $\mathbf{x_{0}}$ iff for all directions $\mathbf{v} \in \mathbb{R^{N}}$, the single variable function
+    where $\vec{x} = \left(x_{1}, x_{2}, \dots, x_{n}\right)$. The directional function of $f$ at point $\vec{x_{0}}$ in direction $\vec{v} \in \mathbb{R^{N}}$ is the single variable function
     \begin{align*}
-                g \colon \mathbb{R} & \longrightarrow \mathbb{R}\\
-                                  k & \longmapsto f\left(\mathbf{x_{0}} + k\mathbf{v}\right)
+        \xi_\vec{v} \colon \mathbb{R} & \longrightarrow \mathbb{R}\\
+                                    k & \longmapsto f\left(\vec{x_{0}} + k\vec{v}\right)
     \end{align*}
-has zero derivative at $k = 0$ i.e.\ iff $\forall \mathbf{v} \in \mathbb{R^{N}} \colon \frac{\mathrm{d}g}{\mathrm{d}k}\left(0\right) = 0$.
 \end{definition}
+With this, we are ready to redefine flat tangent hyperplane:
+\begin{definition}
+    Given a multivariable function $f$, its tangent hyperplane is flat at point $\vec{x_{0}}$ iff for all directions $\vec{v} \in \mathbb{R^{N}}$, the directional function $\xi_\vec{v}$ at that point has zero derivative at $k = 0$ i.e.\ iff $\forall \vec{v} \in \mathbb{R^{N}} \colon \frac{\mathrm{d}\xi_\vec{v}}{\mathrm{d}k}\left(0\right) = 0$.
+\end{definition}
+From this definition, we can derive our new local mininimum test:
+\begin{theorem}
+    Given a multivariable function $f$, if its tangent hyperplane is flat at point $\vec{x_{0}}$, and for all directions $\vec{v} \in \mathbb{R^{N}}$, the directional function $\xi_\vec{v}$ at that point has positive second derivative at $k = 0$ i.e.\ if $\forall \vec{v} \in \mathbb{R^{N}} \colon \frac{\mathrm{d}\xi_\vec{v}}{\mathrm{d}k}\left(0\right) = 0 \land \frac{\mathrm{d^2}\xi_\vec{v}}{\mathrm{d}k^2}\left(0\right) > 0$, then $\vec{x_{0}}$ is a local minimum point.
+\end{theorem}
+
+\subsection{False Local Minimum}
+We revisit our very first function to see if this test works:
+\counterFunc
+For $\vec{v} = \point{4, 2}$, our directional function at $\vec{x_{0}} = \point{2, 1}$ is
+\begin{align}
+    \xi_\vec{v}\point{k} & = f\point{\vec{x_{0}} + k\vec{v}}\\
+    & = f\point{
+    \begin{bmatrix}
+        2\\
+        1
+    \end{bmatrix}
+    + k
+    \begin{bmatrix}
+        4\\
+        2
+    \end{bmatrix}
+    }\\
+    & = f\point{
+    \begin{bmatrix}
+        2 + 4k\\
+        1 + 2k
+    \end{bmatrix}
+    } \text{ or } f\point{2 + 4k, 1 + 2k}
+\end{align}
+Since $x = 2y$,
+\begin{align}
+    \xi_\vec{v}\point{k} & = \phi\point{2 + 4k, 1 + 2k}\\
+    & = \left(2 + 4k\right)^{2} + \left(1 + 2k\right)^{2} - 8\left(2 + 4k\right) - 4\left(1 + 2k\right) + 10\\
+    & = 4 + 16k + 16k^{2} + 1 + 4k + 4k^{2} - 16 - 32k - 4 - 8k + 10\\
+    & = 20k^{2} - 20k - 5
+\end{align}
+We examine the directional function's derivative at $k = 0$:
+\begin{align}
+    \frac{\mathrm{d}\xi_\vec{v}}{\mathrm{d}k}\point{0} & = 40k - 20\\
+    & = -20 \neq 0
+\end{align}
+Hence $(2, 1)$ is not a local minimum point!
+
+\subsection{True Local Minimum}
 
 \section{Conclusion}
 
