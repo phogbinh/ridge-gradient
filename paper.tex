@@ -10,14 +10,28 @@
 \newtheorem{theorem}{Theorem}[section]
 
 \newcommand
-{\twoFunc}
-[1]
-{#1\left(x, y\right)}
-
-\newcommand
 {\point}
 [1]
 {\left(#1\right)}
+
+\newcommand
+{\twoFunc}
+[1]
+{#1\point{x, y}}
+
+\newcommand
+{\derv}
+{\mathrm{d}}
+
+\newcommand
+{\fd} % [f]irst [d]erivative
+[3]
+{\frac{\derv#1}{\derv#2}\point{#3}}
+
+\newcommand
+{\sd} % [s]econd [d]erivative
+[3]
+{\frac{\derv^{2}#1}{\derv#2^{2}}\point{#3}}
 
 \newcommand
 {\fpd} % [f]irst [p]artial [d]erivative
@@ -51,7 +65,22 @@ where
 \end{align*}
 }
 
+\newcommand
+{\mat}
+[1]
+{\mathrm{#1}}
+
+\newcommand
+{\df} % [d]irectional [f]unction
+[1]
+{\xi_\vec{#1}}
+
+\newcommand
+{\R}
+{\mathbb{R}}
+
 \renewcommand{\vec}{\mathbf}
+\renewcommand{\Rn}{\mathbb{R}^n}
 
 \title{\textbf{Ridge Problem in Stochastic Gradient Descent: An Analytical Solution}}
 \author{Tran Phong Binh\thanks{Email: \texttt{phongbinh2511@gmail.com}}}
@@ -203,7 +232,7 @@ Hence the Hessian determinant
 \end{align}
 
 \subsection{Second Partial Derivative Test Contradiction}
-According to \cite{secondDerivativeTest}, by equations \ref{zeroGradient}, \ref{positiveDetH}, and the fact that $f_{xx}\point{2, 1} = 2 > 0$, we shall conclude $(2, 1)$ is a local minimum point. However, this is incorrect, as for $h \in \mathbb{R}$, $h \to 0^{+}$:
+According to \cite{secondDerivativeTest}, by equations \ref{zeroGradient}, \ref{positiveDetH}, and the fact that $f_{xx}\point{2, 1} = 2 > 0$, we shall conclude $(2, 1)$ is a local minimum point. However, this is incorrect, as for $h \in \R$, $h \to 0^{+}$:
 \begin{align}
     f\point{2 + 2h, 1 + h} & = \phi\point{2 + 2h, 1 + h}\\
                            & < \phi\point{2, 1} = f\point{2, 1}
@@ -219,23 +248,23 @@ In this work, we provide an analytical solution to this issue by redefining what
 \begin{definition}
     Given a multivariable function
     \begin{align*}
-        f \colon \mathbb{R^{N}} & \longrightarrow \mathbb{R}\\
-                        \vec{x} & \longmapsto f\left(\vec{x}\right)
+        f \colon \Rn & \longrightarrow \R\\
+                        \vec{x} & \longmapsto f\point{\vec{x}}
     \end{align*}
-    where $\vec{x} = \left(x_{1}, x_{2}, \dots, x_{n}\right)$. The directional function of $f$ at point $\vec{x_{0}}$ in direction $\vec{v} \in \mathbb{R^{N}}$ is the single variable function
+    where $\vec{x} = \point{x_{1}, x_{2}, \dots, x_{n}}$. The directional function of $f$ at point $\vec{x_{0}}$ in direction $\vec{v} \in \Rn$ is the single variable function
     \begin{align*}
-        \xi_\vec{v} \colon \mathbb{R} & \longrightarrow \mathbb{R}\\
-                                    k & \longmapsto f\left(\vec{x_{0}} + k\vec{v}\right)
+        \df{v} \colon \R & \longrightarrow \R\\
+                                    k & \longmapsto f\point{\vec{x_{0}} + k\vec{v}}
     \end{align*}
 \end{definition}
 With this, we are ready to redefine flat tangent hyperplane:
 \begin{definition}
-    Given a multivariable function $f$, its tangent hyperplane is flat at point $\vec{x_{0}}$ iff for all directions $\vec{v} \in \mathbb{R^{N}}$, the directional function $\xi_\vec{v}$ at that point has zero first derivative at $k = 0$ i.e.\ iff $\forall \vec{v} \in \mathbb{R^{N}} \colon \frac{\mathrm{d}\xi_\vec{v}}{\mathrm{d}k}\left(0\right) = 0$.
+    Given a multivariable function $f$, its tangent hyperplane is flat at point $\vec{x_{0}}$ iff for all directions $\vec{v} \in \Rn$, the directional function $\df{v}$ at that point has zero first derivative at $k = 0$ i.e.\ iff $\forall \vec{v} \in \Rn \colon \fd{\df{v}}{k}{0} = 0$.
 \end{definition}
 From this definition, we can derive our new local mininimum test:
 \begin{theorem}
     \label{th:localMin}
-    Given a multivariable function $f$, if its tangent hyperplane is flat at point $\vec{x_{0}}$, and for all directions $\vec{v} \in \mathbb{R^{N}}$, the directional function $\xi_\vec{v}$ at that point has positive second derivative at $k = 0$ i.e.\ if $\forall \vec{v} \in \mathbb{R^{N}} \colon \frac{\mathrm{d}\xi_\vec{v}}{\mathrm{d}k}\left(0\right) = 0 \land \frac{\mathrm{d^2}\xi_\vec{v}}{\mathrm{d}k^2}\left(0\right) > 0$, then $\vec{x_{0}}$ is a local minimum point.
+    Given a multivariable function $f$, if its tangent hyperplane is flat at point $\vec{x_{0}}$, and for all directions $\vec{v} \in \Rn$, the directional function $\df{v}$ at that point has positive second derivative at $k = 0$ i.e.\ if $\forall \vec{v} \in \Rn \colon \fd{\df{v}}{k}{0} = 0 \land \sd{\df{v}}{k}{0} > 0$, then $\vec{x_{0}}$ is a local minimum point.
 \end{theorem}
 
 \subsection{False Local Minimum}
@@ -243,7 +272,7 @@ We revisit our first example to see if the test works:
 \counterFunc
 For $\vec{v} = \point{4, 2}$, our directional function at $\vec{x_{0}} = \point{2, 1}$ is
 \begin{align}
-    \xi_\vec{v}\point{k} & = f\point{\vec{x_{0}} + k\vec{v}}\\
+    \df{v}\point{k} & = f\point{\vec{x_{0}} + k\vec{v}}\\
     & = f\point{
     \begin{bmatrix}
         2\\
@@ -264,14 +293,14 @@ For $\vec{v} = \point{4, 2}$, our directional function at $\vec{x_{0}} = \point{
 \end{align}
 Since $x = 2y$,
 \begin{align}
-    \xi_\vec{v}\point{k} & = \phi\point{2 + 4k, 1 + 2k}\\
+    \df{v}\point{k} & = \phi\point{2 + 4k, 1 + 2k}\\
     & = \left(2 + 4k\right)^{2} + \left(1 + 2k\right)^{2} - 8\left(2 + 4k\right) - 4\left(1 + 2k\right) + 10\\
     & = 4 + 16k + 16k^{2} + 1 + 4k + 4k^{2} - 16 - 32k - 4 - 8k + 10\\
     & = 20k^{2} - 20k - 5
 \end{align}
 We examine the directional function's first derivative at $k = 0$:
 \begin{align}
-    \frac{\mathrm{d}\xi_\vec{v}}{\mathrm{d}k}\point{0} & = 40k - 20\\
+    \fd{\df{v}}{k}{0} & = 40k - 20\\
     & = -20 \neq 0
 \end{align}
 Hence $\vec{x_{0}} = (2, 1)$ is not a local minimum point!
@@ -279,24 +308,24 @@ Hence $\vec{x_{0}} = (2, 1)$ is not a local minimum point!
 \subsection{True Local Minimum}
 We consolidate our test with the well-known function
 \begin{equation}
-    f\point{\vec{x}} = \vec{x}^{\intercal}\mathrm{A}\vec{x}
+    f\point{\vec{x}} = \vec{x}^{\intercal}\mat{A}\vec{x}
 \end{equation}
-where $\underset{n \times n}{\mathrm{A}} \succ 0$. For any $\vec{v} \in \mathbb{R^{N}}$, our directional function at $\vec{x_{0}} = \vec{0}$ is
+where $\underset{n \times n}{\mat{A}} \succ 0$. For any $\vec{v} \in \Rn$, our directional function at $\vec{x_{0}} = \vec{0}$ is
 \begin{align}
-    \xi_\vec{v}\point{k} & = f\point{\vec{x_{0}} + k\vec{v}}\\
-    & = \left(k\vec{v}\right)^{\intercal}\mathrm{A}\left(k\vec{v}\right)\\
-    & = k^{2}\vec{v}^{\intercal}\mathrm{A}\vec{v}
+    \df{v}\point{k} & = f\point{\vec{x_{0}} + k\vec{v}}\\
+    & = \left(k\vec{v}\right)^{\intercal}\mat{A}\left(k\vec{v}\right)\\
+    & = k^{2}\vec{v}^{\intercal}\mat{A}\vec{v}
 \end{align}
 We examine the directional function's first derivative at $k = 0$:
 \begin{align}
-    \frac{\mathrm{d}\xi_\vec{v}}{\mathrm{d}k}\point{0} & = 2k\vec{v}^{\intercal}\mathrm{A}\vec{v}\\
+    \fd{\df{v}}{k}{0} & = 2k\vec{v}^{\intercal}\mat{A}\vec{v}\\
     & = 0
 \end{align}
 Furthermore,
 \begin{equation}
-    \frac{\mathrm{d^{2}}\xi_\vec{v}}{\mathrm{d}k^{2}}\point{0} = 2\vec{v}^{\intercal}\mathrm{A}\vec{v}
+    \sd{\df{v}}{k}{0} = 2\vec{v}^{\intercal}\mat{A}\vec{v}
 \end{equation}
-Since $A \succ 0$, $\forall \vec{v} \neq \vec{0} \colon \vec{v}^{\intercal}\mathrm{A}\vec{v} > 0$. Thus, our directional function's second derivative is positive. According to Theorem \ref{th:localMin}, $\vec{x_{0}} = \vec{0}$ is a local minimum point!
+Since $A \succ 0$, $\forall \vec{v} \neq \vec{0} \colon \vec{v}^{\intercal}\mat{A}\vec{v} > 0$. Thus, our directional function's second derivative is positive. According to Theorem \ref{th:localMin}, $\vec{x_{0}} = \vec{0}$ is a local minimum point!
 
 \section{Conclusion}
 
