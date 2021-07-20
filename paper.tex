@@ -55,7 +55,7 @@
     \twoFunc{f} = 
     \begin{cases}
         \twoFunc{\phi} & \text{if }x = 2y\text{,}\\
-        \twoFunc{\psi} & \text{otherwise}\text{,}
+        \twoFunc{\psi} & \text{otherwise}\text{;}
     \end{cases}
 \end{equation*}
 where
@@ -242,22 +242,22 @@ That is, $\point{2, 1}$ is not a local minimum point (proof in appendix). % TODO
 \section{Intuition}
 
 \section{Solution}
-For the tangent hyperplane of a multivariable function to be flat, it is not enough for the gradient of the function at that point to be the zero vector, but the first derivatives of the function in all directions at the point of interest must equal to $0$.
+For the tangent hyperplane of a multivariable function at a point to be flat, it is not enough for the gradient of the function at that point to be the zero vector, but the first derivatives of the function at the point of interest must equal to zero in all directions.
 
-In this work, we provide an analytical solution to this issue by redefining what it takes for the tangent hyperplane of a function at a point to be flat. Firstly, we define the concept of directional function\footnote{We exclude the vector $\vec{0}$ in all of our discussions on directional function.}:
+In this work, we provide an analytical solution to this issue by redefining what it takes for the tangent hyperplane of a function at a point to be flat. Firstly, we define the concept of directional function:
 \begin{definition}
     Given a multivariable function
     \begin{align*}
         f \colon \Rn & \longrightarrow \R\\
                         \vec{x} & \longmapsto f\point{\vec{x}}
     \end{align*}
-    where $\vec{x} = \point{x_{1}, x_{2}, \dots, x_{n}}$. The directional function of $f$ at point $\vec{x_{0}}$ in direction $\vec{v} \in \Rn$ is the single variable function
+    where $\vec{x} = \point{x_{1}, x_{2}, \dots, x_{n}}$. For a direction\footnote{We exclude the vector $\vec{0}$ from all of our discussions on directional function.} $\vec{v} \in \Rn$, the directional function of $f$ at point $\vec{x_{0}}$ is the single variable function
     \begin{align*}
         \df{v} \colon \R & \longrightarrow \R\\
                                     k & \longmapsto f\point{\vec{x_{0}} + k\vec{v}}
     \end{align*}
 \end{definition}
-With this, we are ready to redefine flat tangent hyperplane:
+We are now ready to redefine flat tangent hyperplane:
 \begin{definition}
     Given a multivariable function $f$, its tangent hyperplane is flat at point $\vec{x_{0}}$ iff for all directions $\vec{v} \in \Rn$, the directional function $\df{v}$ at that point has zero first derivative at $k = 0$ i.e.\ iff $\forall \vec{v} \in \Rn \colon \fd{\df{v}}{k}{0} = 0$.
 \end{definition}
@@ -270,7 +270,7 @@ From this definition, we can derive our new local mininimum test:
 \subsection{False Local Minimum}
 We revisit our first example to see if the test works:
 \counterFunc
-For $\vec{v} = \point{4, 2}$, our directional function at $\vec{x_{0}} = \point{2, 1}$ is
+For the direction $\vec{v} = \point{4, 2}$, our directional function at $\vec{x_{0}} = \point{2, 1}$ is
 \begin{align}
     \df{v}\point{k} & = f\point{\vec{x_{0}} + k\vec{v}}\\
     & = f\point{
@@ -310,7 +310,7 @@ We consolidate our test with the well-known function
 \begin{equation}
     f\point{\vec{x}} = \vec{x}^{\intercal}\mat{A}\vec{x}
 \end{equation}
-where $\underset{n \times n}{\mat{A}} \succ 0$. For any $\vec{v} \in \Rn$, our directional function at $\vec{x_{0}} = \vec{0}$ is
+where $\underset{n \times n}{\mat{A}} \succ 0$. For any directions $\vec{v} \in \Rn$, our directional function at $\vec{x_{0}} = \vec{0}$ is
 \begin{align}
     \df{v}\point{k} & = f\point{\vec{x_{0}} + k\vec{v}}\\
     & = \left(k\vec{v}\right)^{\intercal}\mat{A}\left(k\vec{v}\right)\\
@@ -325,7 +325,7 @@ Furthermore,
 \begin{equation}
     \sd{\df{v}}{k}{0} = 2\vec{v}^{\intercal}\mat{A}\vec{v}
 \end{equation}
-Since $A \succ 0$, $\forall \vec{v} \neq \vec{0} \colon \vec{v}^{\intercal}\mat{A}\vec{v} > 0$. Thus, our directional function's second derivative is positive. According to Theorem \ref{th:localMin}, $\vec{x_{0}} = \vec{0}$ is a local minimum point!
+Since $\mat{A} \succ 0$, $\forall \vec{v} \neq \vec{0} \colon \vec{v}^{\intercal}\mat{A}\vec{v} > 0$. Thus, our directional function's second derivative is positive. According to Theorem \ref{th:localMin}, $\vec{x_{0}} = \vec{0}$ is a local minimum point!
 
 \section{Conclusion}
 
