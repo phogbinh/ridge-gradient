@@ -3,6 +3,7 @@
 \usepackage{amsmath} % math
 \usepackage{amssymb} % math symbol
 \usepackage[backend=biber]{biblatex}
+\usepackage{graphicx}
 
 \addbibresource{reference.bib}
 
@@ -78,6 +79,16 @@ where
 \newcommand
 {\R}
 {\mathbb{R}}
+
+\newcommand
+{\itvec} % [i]nline 2d [vec]tor *inkscape*
+[2]
+{\left[\begin{array}{c}#1\\#2\end{array}\right]}
+
+\newcommand
+{\dirgraph} % [d]irection annotation for [graph] at (x, y) = (2, 1) *inkscape*
+[2]
+{\itvec{x}{y} = \itvec{2}{1} + k\itvec{#1}{#2}}
 
 \renewcommand{\vec}{\mathbf}
 \renewcommand{\Rn}{\mathbb{R}^n}
@@ -240,6 +251,12 @@ According to \cite{secondDerivativeTest}, by equations \ref{zeroGradient}, \ref{
 That is, $\point{2, 1}$ is not a local minimum point (proof in appendix). % TODO appendix
 
 \section{Intuition}
+\begin{figure}[h]
+    \centering
+    \def\svgwidth{0.6\textwidth}
+    \input{f_graph.pdf_tex}
+    \caption{Partial graph of the function $\twoFunc{f}$}
+\end{figure}
 
 \section{Solution}
 For the tangent hyperplane of a multivariable function at a point to be flat, it is not enough for the gradient of the function at that point to be the zero vector, but the first derivatives of the function at the point of interest must equal to zero in all directions.
