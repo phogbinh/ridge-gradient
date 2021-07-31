@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (ce6663b3b7, 2021-05-25)"
+   sodipodi:docname="f_graph.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="pt"
+     showgrid="true"
+     inkscape:zoom="0.73228115"
+     inkscape:cx="-127.6832"
+     inkscape:cy="385.09799"
+     inkscape:window-width="1853"
+     inkscape:window-height="1025"
+     inkscape:window-x="67"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.17638889;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 31.750005,179.91667 63.499996,-63.5 V 31.749997"
+       id="path1080"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.17638889;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 95.250001,116.41667 H 179.91667"
+       id="path1082"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.17638889;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 93.486121,33.513887 1.76388,-1.76389 1.76389,1.76389"
+       id="path1197"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.17638889;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 31.750004,178.15278 -1e-6,1.76389 h 1.76389"
+       id="path1199"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.17638889;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 178.15279,114.65279 1.76388,1.76388 -1.76388,1.76389"
+       id="path1201"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 58.208337,113.77084 c 21.166667,52.91668 42.333323,52.91668 63.499983,0"
+       id="path2218"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 58.208335,132.29167 C 81.4962,173.56705 100.16563,166.67598 111.12499,79.374994"
+       id="path3204"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 95.250001,63.499994 -5.29167,89.958336 -5.29166,47.625 -5.291666,21.16667 -3.527774,10.58334 -3.527778,5.29166 -1.763889,1.76389 H 68.791675 L 67.027787,238.125 63.500009,232.83334 59.972231,222.25"
+       id="path3757"
+       sodipodi:nodetypes="ccccccccccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="97.799225"
+       y="34.107891"
+       id="text14229"><tspan
+         sodipodi:role="line"
+         id="tspan14227"
+         style="font-size:4.23333px;stroke-width:0.264583"
+         x="97.799225"
+         y="34.107891">$\twoFunc{f}$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="27.969938"
+       y="174.37451"
+       id="text23333"><tspan
+         sodipodi:role="line"
+         id="tspan23331"
+         style="font-size:4.23333px;stroke-width:0.264583"
+         x="27.969938"
+         y="174.37451">$x$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="176.68102"
+       y="111.13798"
+       id="text33805"><tspan
+         sodipodi:role="line"
+         id="tspan33803"
+         style="stroke-width:0.264583"
+         x="176.68102"
+         y="111.13798">$y$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="71.464119"
+       y="244.85007"
+       id="text47591"><tspan
+         sodipodi:role="line"
+         id="tspan47589"
+         style="stroke-width:0.264583"
+         x="71.464119"
+         y="244.85007">$f\point{4, 2} = -10$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="91.340469"
+       y="161.1539"
+       id="text51525"><tspan
+         sodipodi:role="line"
+         id="tspan51523"
+         style="stroke-width:0.264583"
+         x="91.340469"
+         y="161.1539">$f\point{2, 1} = -5$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="119.11717"
+       y="135.0612"
+       id="text56097"><tspan
+         sodipodi:role="line"
+         id="tspan56095"
+         style="stroke-width:0.264583"
+         x="119.11717"
+         y="135.0612">$\dirgraph{0}{1}$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="110.94099"
+       y="96.242531"
+       id="text60273"><tspan
+         sodipodi:role="line"
+         id="tspan60271"
+         style="stroke-width:0.264583"
+         x="110.94099"
+         y="96.242531">$\dirgraph{1}{0}$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="96.557014"
+       y="68.682198"
+       id="text65637"><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="96.557014"
+         y="68.682198"
+         id="tspan65639">$\dirgraph{2}{1}$</tspan></text>
+  </g>
+</svg>
