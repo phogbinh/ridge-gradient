@@ -256,7 +256,12 @@ That is, $\point{2, 1}$ is not a local minimum point (proof in appendix). % TODO
     \def\svgwidth{0.6\textwidth}
     \input{f_graph.pdf_tex}
     \caption{Partial graph of the function $\twoFunc{f}$}
+    \label{fig:f}
 \end{figure}
+
+Considering our function's graph depicted in Figure \ref{fig:f} at point $\point{2, 1}$, we observe that the first derivatives in the $x$ and $y$ directions are zeroes, making the zero gradient. Furthermore, the curvature of the function is up in all directions at the point of interest, indicating the positive definite Hessian. With this premise, the second partial derivative test concludes that $\point{2, 1}$ is a local minimum point.
+
+However, this is analytically and visually false. Even though the curvature along the $\vec{v} = \point{4, 2}$ direction is up, the corresponding first derivative differs from zero, invalidating the second partial derivative test.
 
 \section{Solution}
 For the tangent hyperplane of a multivariable function at a point to be flat, it is not enough for the gradient of the function at that point to be the zero vector, but the first derivatives of the function at the point of interest must equal to zero in all directions.
