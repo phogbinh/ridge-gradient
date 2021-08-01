@@ -61,6 +61,6 @@
     \put(0.40422715,0.54250527){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$f\point{2, 1} = -5$\end{tabular}}}}%
     \put(0.58239681,0.70987312){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\dirgraph{0}{1}$\end{tabular}}}}%
     \put(0.52995184,0.95886991){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\dirgraph{1}{0}$\end{tabular}}}}%
-    \put(0.43768792,1.13565169){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\dirgraph{2}{1}$\end{tabular}}}}%
+    \put(0.43768792,1.13565169){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\dirgraph{4}{2}$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
