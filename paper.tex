@@ -62,7 +62,7 @@
 where
 \begin{align*}
     \twoFunc{\phi} &= x^{2} + y^{2} - 8x - 4y + 10\text{,}\\
-    \twoFunc{\psi} &= x^{2} + y^{2} - 4x - 2y\text{.}
+    \twoFunc{\psi} &= x^{2} + y^{2} - 4x - 2y
 \end{align*}
 }
 
@@ -107,46 +107,40 @@ where
 \end{abstract}
 
 \section{Introduction}
-The second partial derivative test is a renowed technique for determining local extremum points. This mathematical method had been well studied since the beginning era of calculus, and has been used extensively both in the academic and in real-world applications. Yet, upon studying the ridge problem of hill climbing\cite{ridge}, we stumbled on a thought that the same issue could present in the forementioned test under a stochastic space setup.
+The second partial derivative test is a renowed technique for determining local extremum points. This mathematical method had been well studied since the beginning era of calculus, and has been used extensively both in the academia and in real-world applications. Yet, upon studying the ridge problem of hill climbing\cite{ridge}, we stumbled on a thought that the same issue could present in the forementioned test under a stochastic space setup.
 
-In this work, we rigorously prove that such problem exists, and propose an analytical solution for it. We hope our finding pushes the knowledge boundary of stochastic gradient descent in specific, and optimization in general. We expect this to help researchers and practitioners surpass false local extremum points and navigate down true optimization objectives, consolidating the robustness of theories and systems.
+In this work, we prove that such problem exists, proposing an analytical solution, and check our approach on two multivariable functions. We hope our finding further pushes knowledge boundaries of stochastic gradient descent in specific, and optimization in general. With this, researchers and practitioners can now surpass false local extremum points to navigate down true local optimization objectives, consolidating the robustness of their theories and systems.
 
 \section{Proof}
+We prove that ridge problem presents in the second partial derivative test by analyzing the multivariable function
 \counterFunc
+at point $\point{2, 1}$.
 
 \subsection{First Partial Derivatives}
-We examine the first derivatives of our function $f$ at point $\point{2, 1}$.
-\begin{equation}
-    \fpd{f}{x}{2, 1} = \lim_{h \to 0}{\frac{f\point{2 + h, 1} - f\point{2, 1}}{h}}
-\end{equation}
-Because the numerator
-\begin{equation}
-    f\point{2 + h, 1} = \psi\point{2 + h, 1}
-\end{equation}
-\begin{equation}
-    \begin{split}
+We begin by examining the first derivatives of our function $f$ at point $\point{2, 1}$. Firstly, it is given that
+\begin{equation*}
+    \fpd{f}{x}{2, 1} = \lim_{h \to 0}{\frac{f\point{2 + h, 1} - f\point{2, 1}}{h}}\text{.}
+\end{equation*}
+Because the components on the numerator are
+\begin{align*}
+    f\point{2 + h, 1} & = \psi\point{2 + h, 1}\text{,}\\
         f\point{2, 1} & = \phi\point{2, 1}\\
                       & = -5\\
-                      & = \psi\point{2, 1}
-    \end{split}
-\end{equation}
+                      & = \psi\point{2, 1}\text{,}
+\end{align*}
 it holds that
-\begin{equation}
+\begin{align}
     \label{eq:proveSpd} % [prove] [s]econd [p]artial [d]erivatives
-    \begin{split}
-        \fpd{f}{x}{2, 1} & = \fpd{\psi}{x}{2, 1}\\
-                         & = 2x - 4\\
-                         & = 0
-    \end{split}
-\end{equation}
+    \fpd{f}{x}{2, 1} & = \fpd{\psi}{x}{2, 1}\nonumber\\
+                     & = 2x - 4\nonumber\\
+                     & = 0\text{.}
+\end{align}
 Similarly,
-\begin{equation}
-    \begin{split}
-        \fpd{f}{y}{2, 1} & = \fpd{\psi}{y}{2, 1}\\
-                         & = 2y - 2\\
-                         & = 0
-    \end{split}
-\end{equation}
+\begin{align*}
+    \fpd{f}{y}{2, 1} & = \fpd{\psi}{y}{2, 1}\\
+                     & = 2y - 2\\
+                     & = 0\text{.}
+\end{align*}
 Hence
 \begin{equation}
     \label{zeroGradient}
@@ -154,17 +148,17 @@ Hence
     \begin{bmatrix}
         0\\
         0
-    \end{bmatrix}
+    \end{bmatrix}\text{.}
 \end{equation}
 
 \subsection{Second Partial Derivatives}
 We then consider the second partial derivatives of our function at the same point.
 
 \subsubsection{Second Partial Derivative With Respect To $x$}
-We begin with $f_{xx}\point{2, 1}$:
-\begin{equation}
-    \spd{f}{x}{x}{2, 1} = \lim_{h \to 0}{\frac{\fpd{f}{x}{2 + h, 1} - \fpd{f}{x}{2, 1}}{h}}
-\end{equation}
+We start with $f_{xx}\point{2, 1}$:
+\begin{equation*}
+    \spd{f}{x}{x}{2, 1} = \lim_{h \to 0}{\frac{\fpd{f}{x}{2 + h, 1} - \fpd{f}{x}{2, 1}}{h}}\text{.}
+\end{equation*}
 Assessing the first component of the numerator
 \begin{equation}
     \fpd{f}{x}{2 + h, 1} = \lim_{k \to 0}{\frac{f\point{2 + h + k, 1} - f\point{2 + h, 1}}{k}}
