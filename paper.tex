@@ -47,7 +47,7 @@
 \newcommand
 {\appCon} % h and k approach condition
 [2]
-{\text{if } h \to 0^{#1} \text{, } k \to 0^{#2}}
+{\text{if } h \to 0^{#1} \text{ and } k \to 0^{#2}}
 
 \newcommand
 {\counterFunc}
@@ -90,6 +90,14 @@ where
 [2]
 {\itvec{x}{y} = \itvec{2}{1} + k\itvec{#1}{#2}}
 
+\newcommand
+{\hess}
+{\mathrm{Hess} \ f_{\point{2, 1}}}
+
+\newcommand
+{\hessDet}
+{\lvert\hess\rvert}
+
 \renewcommand{\vec}{\mathbf}
 \renewcommand{\Rn}{\mathbb{R}^n}
 
@@ -117,7 +125,7 @@ We prove that ridge problem presents in the second partial derivative test by an
 at point $\point{2, 1}$.
 
 \subsection{First Partial Derivatives}
-We begin by examining the first derivatives of our function $f$ at point $\point{2, 1}$. Firstly, it is given that
+We begin by examining the first derivatives of $f$ at point $\point{2, 1}$. Firstly, it is given that
 \begin{equation*}
     \fpd{f}{x}{2, 1} = \lim_{h \to 0}{\frac{f\point{2 + h, 1} - f\point{2, 1}}{h}}\text{.}
 \end{equation*}
@@ -131,9 +139,9 @@ Because the components on the numerator are
 it holds that
 \begin{align}
     \label{eq:proveSpd} % [prove] [s]econd [p]artial [d]erivatives
-    \fpd{f}{x}{2, 1} & = \fpd{\psi}{x}{2, 1}\nonumber\\
+    \fpd{f}{x}{2, 1} & = \fpd{\psi}{x}{2, 1}\\
                      & = 2x - 4\nonumber\\
-                     & = 0\text{.}
+                     & = 0\text{.}\nonumber
 \end{align}
 Similarly,
 \begin{align*}
@@ -156,91 +164,97 @@ We then consider the second partial derivatives of our function at the same poin
 
 \subsubsection{Second Partial Derivative With Respect To $x$}
 We start with $f_{xx}\point{2, 1}$:
-\begin{equation*}
-    \spd{f}{x}{x}{2, 1} = \lim_{h \to 0}{\frac{\fpd{f}{x}{2 + h, 1} - \fpd{f}{x}{2, 1}}{h}}\text{.}
-\end{equation*}
-Assessing the first component of the numerator
 \begin{equation}
-    \fpd{f}{x}{2 + h, 1} = \lim_{k \to 0}{\frac{f\point{2 + h + k, 1} - f\point{2 + h, 1}}{k}}
+    \label{eq:fxxDef}
+    \spd{f}{x}{x}{2, 1} = \lim_{h \to 0}{\frac{\fpd{f}{x}{2 + h, 1} - \fpd{f}{x}{2, 1}}{h}}\text{.}
 \end{equation}
-We observe that
-\begin{align}
+Assessing the first component of the numerator
+\begin{equation*}
+    \fpd{f}{x}{2 + h, 1} = \lim_{k \to 0}{\frac{f\point{2 + h + k, 1} - f\point{2 + h, 1}}{k}}\text{,}
+\end{equation*}
+we observe that
+\begin{align*}
     f\point{2 + h + k, 1} & =
     \begin{cases}
-        \psi\point{2 + h + k, 1} & \appCon{-}{-}\\
-        \phi\point{2, 1} = -5 = \psi\point{2, 1} & \appCon{-}{+}\\
-        \phi\point{2, 1} = -5 = \psi\point{2, 1} & \appCon{+}{-}\\
+        \psi\point{2 + h + k, 1} & \appCon{-}{-}\text{,}\\
+        \phi\point{2, 1} = -5 = \psi\point{2, 1} & \appCon{-}{+}\text{,}\\
+        \phi\point{2, 1} = -5 = \psi\point{2, 1} & \appCon{+}{-}\text{,}\\
         \psi\point{2 + h + k, 1} & \appCon{+}{+}
     \end{cases}\\
-    & = \psi\point{2 + h + k, 1}
-\end{align}
+    & = \psi\point{2 + h + k, 1}\text{,}
+\end{align*}
 and
-\begin{equation}
-    f\point{2 + h, 1} = \psi\point{2 + h, 1}
-\end{equation}
-Hence
+\begin{equation*}
+    f\point{2 + h, 1} = \psi\point{2 + h, 1}\text{.}
+\end{equation*}
+Therefore, our first entry of the forementioned numerator
 \begin{equation}
     \label{eq:proveFxx}
-    \fpd{f}{x}{2 + h, 1} = \fpd{\psi}{x}{2 + h, 1}
+    \fpd{f}{x}{2 + h, 1} = \fpd{\psi}{x}{2 + h, 1}\text{.}
 \end{equation}
-By equations \ref{eq:proveSpd} and \ref{eq:proveFxx},
-\begin{align}
+By equations \ref{eq:proveSpd} and \ref{eq:proveFxx}, our equation \ref{eq:fxxDef} becomes
+\begin{align*}
     \spd{f}{x}{x}{2, 1} & = \spd{\psi}{x}{x}{2, 1}\\
-                        & = 2
-\end{align}
+                        & = 2\text{.}
+\end{align*}
 
 \subsubsection{Second Partial Derivative With Respect To $x$ Then $y$}
 We continue by examining $f_{yx}\point{2, 1}$:
 \begin{equation}
-    \spd{f}{x}{y}{2, 1} = \lim_{h \to 0}{\frac{\fpd{f}{x}{2, 1 + h} - \fpd{f}{x}{2, 1}}{h}}
+    \label{eq:fyxDef}
+    \spd{f}{x}{y}{2, 1} = \lim_{h \to 0}{\frac{\fpd{f}{x}{2, 1 + h} - \fpd{f}{x}{2, 1}}{h}}\text{.}
 \end{equation}
 Again, we assess the first component of the numerator
-\begin{equation}
-    \fpd{f}{x}{2, 1 + h} = \lim_{k \to 0}{\frac{f\point{2 + k, 1 + h} - f\point{2, 1 + h}}{k}}
-\end{equation}
-Similar to $f_{xx}\point{2, 1}$, we observe that
-\begin{align}
+\begin{equation*}
+    \fpd{f}{x}{2, 1 + h} = \lim_{k \to 0}{\frac{f\point{2 + k, 1 + h} - f\point{2, 1 + h}}{k}}\text{.}
+\end{equation*}
+Analogous to $f_{xx}\point{2, 1}$, we learn that
+\begin{align*}
     f\point{2 + k, 1 + h} & =
     \begin{cases}
-        \psi\point{2 + k, 1 + h} & \appCon{-}{-}\\
-        \psi\point{2 + k, 1 + h} & \appCon{-}{+}\\
-        \psi\point{2 + k, 1 + h} & \appCon{+}{-}\\
+        \psi\point{2 + k, 1 + h} & \appCon{-}{-}\text{,}\\
+        \psi\point{2 + k, 1 + h} & \appCon{-}{+}\text{,}\\
+        \psi\point{2 + k, 1 + h} & \appCon{+}{-}\text{,}\\
         \psi\point{2 + k, 1 + h} & \appCon{+}{+}
     \end{cases}\\
-    & = \psi\point{2 + k, 1 + h}
-\end{align}
+    & = \psi\point{2 + k, 1 + h}\text{,}
+\end{align*}
 and
-\begin{equation}
-    f\point{2, 1 + h} = \psi\point{2, 1 + h}
-\end{equation}
-Hence
+\begin{equation*}
+    f\point{2, 1 + h} = \psi\point{2, 1 + h}\text{.}
+\end{equation*}
+Thus
 \begin{equation}
     \label{eq:proveFyx}
-    \fpd{f}{x}{2, 1 + h} = \fpd{\psi}{x}{2, 1 + h}
+    \fpd{f}{x}{2, 1 + h} = \fpd{\psi}{x}{2, 1 + h}\text{.}
 \end{equation}
-By equations \ref{eq:proveSpd} and \ref{eq:proveFyx},
-\begin{align}
+By equations \ref{eq:proveSpd} and \ref{eq:proveFyx}, our equation \ref{eq:fyxDef} becomes
+\begin{align*}
     \spd{f}{x}{y}{2, 1} & = \spd{\psi}{x}{y}{2, 1}\\
-                        & = 0
-\end{align}
+                        & = 0\text{.}
+\end{align*}
 
-\subsubsection{Hessian Determinant}
-Performing similar deductions for $f_{xy}\point{2, 1}$ and $f_{yy}\point{2, 1}$, we have
-\begin{align}
-    f_{xx}\point{2, 1} & = 2\\
-    f_{yx}\point{2, 1} & = 0\\
-    f_{xy}\point{2, 1} & = 0\\
-    f_{yy}\point{2, 1} & = 2
-\end{align}
-Hence the Hessian determinant
-\begin{align}
-    H_{f} & = f_{xx}\point{2, 1}f_{yy}\point{2, 1} - f_{yx}\point{2, 1}f_{xy}\point{2, 1}\\
+\subsubsection{Hessian Matrix}
+Performing similar deductions for $f_{xy}\point{2, 1}$ and $f_{yy}\point{2, 1}$, we get
+\begin{align*}
+    f_{xx}\point{2, 1} & = 2\text{,}\\
+    f_{yx}\point{2, 1} & = 0\text{,}\\
+    f_{xy}\point{2, 1} & = 0\text{,}\\
+    f_{yy}\point{2, 1} & = 2\text{.}
+\end{align*}
+As a result, the Hessian determinant at point $\point{2, 1}$
+\begin{align*}
+    \hessDet & = f_{xx}\point{2, 1}f_{yy}\point{2, 1} - f_{yx}\point{2, 1}f_{xy}\point{2, 1}\\
+      & = 4\text{.}
+\end{align*}
+Since $f_{xx}\point{2, 1} > 0$ and $\hessDet > 0$,
+\begin{equation}
     \label{positiveDetH}
-      & = 4 > 0
-\end{align}
+    \hess \succ 0\text{.}
+\end{equation}
 
 \subsection{Second Partial Derivative Test Contradiction}
-According to \cite{secondDerivativeTest}, by equations \ref{zeroGradient}, \ref{positiveDetH}, and the fact that $f_{xx}\point{2, 1} = 2 > 0$, we shall conclude $(2, 1)$ is a local minimum point. However, this is incorrect, as for $h \in \R$, $h \to 0^{+}$:
+According to \cite{secondDerivativeTest}, by equations \ref{zeroGradient} and \ref{positiveDetH}, we shall conclude $(2, 1)$ is a local minimum point. However, this is incorrect, as for $h \in \R$, $h \to 0^{+}$:
 \begin{align}
     f\point{2 + 2h, 1 + h} & = \phi\point{2 + 2h, 1 + h}\\
                            & < \phi\point{2, 1} = f\point{2, 1}
